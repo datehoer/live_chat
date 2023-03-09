@@ -1,0 +1,68 @@
+2023-03-09 17:26:28,312 - ERROR - app.py - log_exception - 1457 - Exception on /login [POST]
+Traceback (most recent call last):
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "D:\python_work\work\live_chat\chat_sql\app.py", line 32, in login
+    flash(
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\helpers.py", line 391, in flash
+    session["_flashes"] = flashes
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\sessions.py", line 97, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2023-03-09 17:27:24,747 - ERROR - app.py - log_exception - 1457 - Exception on /login [POST]
+Traceback (most recent call last):
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "D:\python_work\work\live_chat\chat_sql\app.py", line 32, in login
+    flash("New username %s created." % (usernm))
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\helpers.py", line 391, in flash
+    session["_flashes"] = flashes
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\sessions.py", line 97, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2023-03-09 17:27:43,345 - ERROR - app.py - log_exception - 1457 - Exception on /login [POST]
+Traceback (most recent call last):
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "D:\python_work\work\live_chat\chat_sql\app.py", line 32, in login
+    flash("New username {} created.".format(usernm))
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\helpers.py", line 391, in flash
+    session["_flashes"] = flashes
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\sessions.py", line 97, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2023-03-09 17:27:53,682 - ERROR - app.py - log_exception - 1457 - Exception on /login [POST]
+Traceback (most recent call last):
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "D:\python_work\work\live_chat\chat_sql\app.py", line 32, in login
+    flash("New username {} created.".format(usernm))
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\helpers.py", line 391, in flash
+    session["_flashes"] = flashes
+  File "D:\downloads\anaconda\envs\workReq\lib\site-packages\flask\sessions.py", line 97, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
