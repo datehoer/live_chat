@@ -111,7 +111,7 @@ def del_msg(data):
 
 
 if __name__ == '__main__':
-    app.debug = False
+    app.debug = True
     # handler = logging.FileHandler("flask.log", encoding="UTF-8")
     # handler.setLevel(logging.DEBUG)
     # logging_format = logging.Formatter('%(asctime)s - %(levelname)s - %(filename)s - %(funcName)s - %(lineno)s - %(message)s')

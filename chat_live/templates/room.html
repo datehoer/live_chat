@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <!--引入Bootstrap CSS文件-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/room.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</head>
+<body>
+<div class="container text-center">
+    <div class="headerBar row">
+        1
+    </div>
+    <div class="bodyBox row">
+        <div class="col">
+            <div class="video-container">
+                <div>
+                    <video name="videoElement" class="centeredVideo" controls autoplay>
+                        Your browser is too old which doesn't support HTML5 video.
+                    </video>
+                </div>
+            </div>
+        </div>
+        <div class="col col-lg-3">
+            <div>
+                <div class="chat-table">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <span class="user-name">tom</span>
+                            <span>:</span>
+                            <span class="user-msg"><strong>hhh</strong></span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="mb-3">
+                        <label for="chatInput" class="form-label">发送区</label>
+                        <input type="text" class="form-control" id="chatInput" aria-describedby="chatInputHelp">
+                        <div id="chatInputHelp" class="form-text">请输入你想要发送的信息</div>
+                        <button type="button" class="btn btn-outline-primary" id="send">发送</button>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footerBox row">
+        3
+    </div>
+</div>
+<script type="text/javascript">
+    let act_user = decodeURI("{{ act_user }}");
+    let act_room = decodeURI("{{ room_name }}");
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     document.querySelector("#msgTbl").innerHTML = format_chats('{{ chats|tojson }}', '{{ act_user }}');
+    // });
+    console.log(act_user, act_room);
+</script>
+<!--引入Bootstrap JS文件-->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+<script src="{{ url_for('static', filename='js/flv.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/room.js') }}"></script>
+</body>
+</html>

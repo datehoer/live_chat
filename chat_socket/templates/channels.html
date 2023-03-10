@@ -8,10 +8,14 @@ Channels
 {% block control %}
 {% if act_user is none %}
 <div>
-    <button id="addName" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#inputName">
-        Enter your display name
-    </button>
-</div>
+
+
+    <!-- Button trigger modal -->
+<button type="button" id="addName" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputName">
+  nter your display name
+</button>
+
+
 {% else %}
 <form class="form-inline" action="{{ url_for('set_channels') }}" method="post">
     <div class="form-group">
@@ -26,11 +30,16 @@ Channels
 
 {% block disp %}
 {% if act_user is none %}
-<div id="inputName" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <form action="{{ url_for('login') }}" method="post">
+    <!-- Modal -->
+<div class="modal fade" id="inputName" tabindex="-1" aria-labelledby="inputNameModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="inputNameModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ url_for('login') }}" method="post">
                 <div class="modal-header">
                   <label for="displayName">Your display name</label>
                 </div>
@@ -44,8 +53,14 @@ Channels
                   </button>
                 </div>
             </form>
-        </div>
+      </div>
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--        <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--      </div>-->
     </div>
+  </div>
+</div>
 </div>
 {% else %}
 <table id="last_channels" class="table table-striped table-hover table-responsive" cellspacing="0" width="80%">
@@ -70,7 +85,7 @@ Channels
         {% if channels|length > 0 %}
             {% for channel in channels %}
             <tr>
-                <td><a href="{{ url_for('get_channel', channel=channel['name']) }}">
+                <td><a href="{{ url_for('get_channel', room_name=channel['name']) }}">
                     {{ channel['name'] }}</a></td>
                 <td>{{ channel['created'].strftime('%Y-%m-%d %H:%M:%S') }}</td>
             </tr>
