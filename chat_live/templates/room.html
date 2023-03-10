@@ -5,7 +5,7 @@
     <title>Login Page</title>
     <!--引入Bootstrap CSS文件-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/room.css') }}" rel="stylesheet">
@@ -61,6 +61,7 @@
     console.log(act_user, act_room);
 </script>
 <!--引入Bootstrap JS文件-->
+<script type="text/javascript" src="{{url_for('static', filename='js/socketio.js')}}"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
 <script src="{{ url_for('static', filename='js/flv.min.js') }}"></script>

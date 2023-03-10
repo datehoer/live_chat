@@ -17,11 +17,24 @@ def index():
     return render_template("login.html")
 
 
+@app.route("/login", methods=['POST'])
+def login():
+    user = request.form.get("userName")
+    if user not in users.keys():
+        users[user] = None
+    session['act_user'] = user
+    return redirect(url_for("get_rooms"))
+
+
 @app.route("/rooms", methods=['GET'])
 def get_rooms():
+    user = session.get("act_user")
+    if user is None:
+        return redirect(url_for("index"))
     return render_template(
         "rooms.html",
-        rooms=rooms
+        rooms=rooms,
+        act_user=user
     )
 
 

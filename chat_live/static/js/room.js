@@ -1,15 +1,16 @@
 $('document').ready(() => {
     /* connect to socket */
+    console.log('ok')
     let socket = io.connect(location.protocol + "//" + document.domain + ":" + location.port);
 
     socket.on('connect', () => {
-        $("#send").click = () => {
+        $("#send").click(() => {
             const msg = $('#chatInput').val();
             const post_time = new Date();
-            // console.log(msg);
+            console.log(msg);
             socket.emit('send msg', {'user': encodeURI(act_user), 'time': post_time,
                 'msg': encodeURI(msg), 'room': encodeURI(act_room)});
-        };
+        });
     });
 
     socket.on('emit msg', data => {
