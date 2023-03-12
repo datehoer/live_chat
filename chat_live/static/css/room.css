@@ -11,6 +11,21 @@
     margin: 0 auto;
     padding: 0;
     position: relative;
-    overflow: hidden;
+    /*overflow: hidden;*/
     text-align: left;
+    overflow: scroll;
+}
+.centeredVideo {
+    width: 100%;
+}
+.logcatBox {
+    margin-top: 10px;
+    width: 100%;
+}
+.headerBar {
+    margin-bottom: 10px;
+}
+.switch-url {
+    display: flex;
+    align-items: center;
 }

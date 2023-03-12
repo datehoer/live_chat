@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <title>{{room_name}}</title>
     <!--引入Bootstrap CSS文件-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
@@ -14,27 +14,96 @@
 <body>
 <div class="container text-center">
     <div class="headerBar row">
-        1
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ url_for('get_rooms') }}">Live Chat</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        {{act_user}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">profile</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('logout') }}">logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </div>
     <div class="bodyBox row">
         <div class="col">
             <div class="video-container">
                 <div>
-                    <video name="videoElement" class="centeredVideo" controls autoplay>
-                        Your browser is too old which doesn't support HTML5 video.
-                    </video>
+                    <div class="mainContainer">
+                        <div>
+                            <div id="streamURL">
+                                <div class="url-input">
+                                    <div class="row g-5">
+                                        <div class="col-8 switch-url">
+                                            <label for="sURL" class="col-sm-2 col-form-label">Stream URL:</label>
+                                            <input type="text" class="form-control" id="sURL"
+                                                   value="http://124.221.222.201/live?port=5678&app=live&stream=qweqweqsdwq">
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="submit" onclick="switch_mds()" class="btn btn-primary mb-3">
+                                                Switch to MediaDataSource
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="options">
+                                    <input type="checkbox" id="isLive" onchange="saveSettings()"/>
+                                    <label for="isLive">isLive</label>
+                                    <input type="checkbox" id="withCredentials" onchange="saveSettings()"/>
+                                    <label for="withCredentials">withCredentials</label>
+                                    <input type="checkbox" id="hasAudio" onchange="saveSettings()" checked/>
+                                    <label for="hasAudio">hasAudio</label>
+                                    <input type="checkbox" id="hasVideo" onchange="saveSettings()" checked/>
+                                    <label for="hasVideo">hasVideo</label>
+                                </div>
+                            </div>
+                            <div id="mediaSourceURL" class="hidden" style="display: none">
+                                <div class="url-input">
+                                    <label for="msURL">MediaDataSource JsonURL:</label>
+                                    <input id="msURL" type="text" value="http://127.0.0.1/flv/7182741.json" />
+                                    <button onclick="switch_url()">Switch to URL</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-container">
+                            <div>
+                                <video name="videoElement" class="centeredVideo" controls autoplay>
+                                    Your browser is too old which doesn't support HTML5 video.
+                                </video>
+                            </div>
+                        </div>
+                        <div class="controls">
+                            <button onclick="flv_load()" class="btn btn-primary">Load</button>
+                            <button onclick="flv_start()" class="btn btn-secondary">Start</button>
+                            <button onclick="flv_pause()" class="btn btn-success">Pause</button>
+                            <button onclick="flv_destroy()" class="btn btn-info">Destroy</button>
+                            <input style="width:100px" type="text" name="seekpoint"/>
+                            <button onclick="flv_seekto()" class="btn btn-light">SeekTo</button>
+                        </div>
+                        <div class="form-floating">
+                            <textarea name="logcatbox" class="form-control logcatBox" id="floatingTextarea"
+                                      readonly></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col col-lg-3">
             <div>
-                <div class="chat-table">
+                <div class="chat-table pre-scrollable">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <span class="user-name">tom</span>
+                        {% for chat in chats %}
+                        <li class="list-group-item" data-publish-time="{{chat.time}}">
+                            <span class="user-name">{{chat.user}}</span>
                             <span>:</span>
-                            <span class="user-msg"><strong>hhh</strong></span>
+                            <span class="user-msg"><strong>{{chat.msg}}</strong></span>
                         </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div>
@@ -43,21 +112,20 @@
                         <input type="text" class="form-control" id="chatInput" aria-describedby="chatInputHelp">
                         <div id="chatInputHelp" class="form-text">请输入你想要发送的信息</div>
                         <button type="button" class="btn btn-outline-primary" id="send">发送</button>
-                      </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="footerBox row">
-        3
+        <p class="text-muted">
+            A game live <a href="https://github.com/datehoer" class="text-reset">@Datehoer</a>.
+        </p>
     </div>
 </div>
 <script type="text/javascript">
     let act_user = decodeURI("{{ act_user }}");
     let act_room = decodeURI("{{ room_name }}");
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     document.querySelector("#msgTbl").innerHTML = format_chats('{{ chats|tojson }}', '{{ act_user }}');
-    // });
     console.log(act_user, act_room);
 </script>
 <!--引入Bootstrap JS文件-->
@@ -65,6 +133,7 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
 <script src="{{ url_for('static', filename='js/flv.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/room_live.js') }}"></script>
 <script src="{{ url_for('static', filename='js/room.js') }}"></script>
 </body>
 </html>

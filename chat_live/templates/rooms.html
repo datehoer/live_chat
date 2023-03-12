@@ -8,8 +8,24 @@
     <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script></head>
+    <link href="{{ url_for('static', filename='css/rooms.css') }}" rel="stylesheet">
 <body>
   <div class="container">
+    <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ url_for('get_rooms') }}">Live Chat</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        {{act_user}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">profile</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('logout') }}">logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     <h1>聊天室列表</h1>
     <button type="button" id="addRoom" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#RoomSettingModal">
       添加聊天室
@@ -26,7 +42,17 @@
               <div class="mb-3">
                 <label for="roomName" class="form-label">Room Name</label>
                 <input type="text" class="form-control" id="roomName" name="room_name">
-                <div id="emailHelp" class="form-text">Add a room.</div>
+                <div id="roomHelp" class="form-text">Add a room.</div>
+              </div>
+              <div class="mb-3">
+                <label for="roomPassword" class="form-label">Room Password</label>
+                <input type="password" name="room_password" class="form-control" id="roomPassword">
+                <div id="pswHelp" class="form-text">Add a room password.</div>
+              </div>
+                <div class="mb-3">
+                <label for="roomTips" class="form-label">Room Tips</label>
+                <input type="text" name="room_tips" class="form-control" id="roomTips">
+                <div id="tipHelp" class="form-text">Add a room tips.</div>
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -38,14 +64,16 @@
         </div>
       </div>
     </div>
-    <ul class="list-group">
+    <ul class="list-group rooms">
       {% for room in rooms %}
-      <li class="list-group-item">
-        <a href="{{ url_for('get_room', room_name=room) }}">{{room}}</a>
+      <li class="list-group-item" room_name="{{room}}">
+        <a href="#"  room_name="{{room}}">{{room}}</a>
+          <span>{{rooms[room]['tips']}}</span>
       </li>
       {% endfor %}
     </ul>
   </div>
 
+  <script src="{{ url_for('static', filename='js/rooms.js') }}"></script>
 </body>
 </html>
